@@ -12,14 +12,17 @@ class MovieList extends Component {
     render() {
         return (
             <div className="MovieList">
-                <h1>Movie List</h1>
-                <Grid container spacing={1} direction="row"
+                <h1 className="MovieList-Header">Movie Sagas</h1>
+                <Grid
+                    className="grid"
+                    container direction="row"
                     justify="flex-start"
                     alignItems="flex-start">
                     {this.props.movieReducer.map(movie => (
-                        <MovieItem />
+                        <MovieItem key={movie.id} movie={movie} />
                     ))}
                 </Grid>
+                
                 <pre>{JSON.stringify(this.props.movieReducer, null, 2)}</pre>
             </div>
         );
