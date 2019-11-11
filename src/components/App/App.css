@@ -58,3 +58,23 @@
 .Details-AppBar {
   padding: 10px 20px;
 }
+
+.Edit-AppBar {
+  padding: 10px 20px;
+}
+
+.Edit-ImgGenreContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.Edit-Description {
+  width: 60%;
+  height: 300px;
+}
+
+.Edit-FormContainer {
+  margin: 20px;
+}
