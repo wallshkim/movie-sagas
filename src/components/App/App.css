@@ -1,11 +1,13 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
   margin: auto;
   overflow: hidden;
+  /* background-color: black; */
 }
 
 .MovieList {
+  text-align: center;
   background-color: black;
 }
 
@@ -31,4 +33,31 @@
 .MovieItem-Icon {
   display: flex;
   flex-direction: row-reverse;
+}
+
+.Details {
+  padding: 20px;
+}
+
+.Details-Description {
+  padding: 20px;
+  /* background-color: lightsalmon; */
+}
+
+.Details-MovieTitle {
+  font-size: 50px;
+  font-family: 'Bungee Shade', cursive;
+  color: black;
+  padding: 0px 20px;
+}
+
+.Details-ImgGenreContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.Details-AppBar {
+  padding: 10px 20px;
 }
