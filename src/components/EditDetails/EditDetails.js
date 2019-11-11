@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 
 class Edit extends Component {
-    // Renders the entire app on the DOM
 
+    
     render() {
         return (
             <div className="Edit">
@@ -13,4 +15,8 @@ class Edit extends Component {
     }
 }
 
-export default Edit;
+const mapReduxStateToProps = (reduxState) => {
+    return reduxState
+}
+
+export default withRouter(connect(mapReduxStateToProps)(Edit));
