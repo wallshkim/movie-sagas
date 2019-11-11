@@ -8,12 +8,31 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+
 
 class Details extends Component {
+
+    // Reset selectedGenresReducer & selectedMovieDetailsReducer
+    // Route to '/'
+    backToList = () => {
+        this.props.dispatch({
+            type: 'RESET_MOVIES_DETAILS'
+        })
+        this.props.history.push(`/`);
+    }
+
     render() {
         return (
             <div className="Details">
-                
+                <AppBar className="Details-AppBar" position="static">
+                    <Toolbar>
+                        <Button onClick={this.backToList} color="inherit">Back to List</Button>
+                        <Button onClick={this.editDetails} color="inherit">Edit</Button>
+                    </Toolbar>
+                </AppBar>
                 <h1 className="Details-MovieTitle">{this.props.selectedMovieDetailsReducer.title}</h1>
                 <div className="Details-ImgGenreContainer">
                     <img src={this.props.selectedMovieDetailsReducer.poster} alt={this.props.selectedMovieDetailsReducer.title} />
@@ -24,7 +43,6 @@ class Details extends Component {
                         </ul> */}
                     <List>
                         {this.props.selectedGenresReducer.map(genre => (
-                            // <li key={this.props.selectedMovieDetailsReducer.id}>{genre}</li>
                             <ListItem key={genre}>
                                 <ListItemIcon style={{ color: "black" }}>
                                     <MovieIcon />
