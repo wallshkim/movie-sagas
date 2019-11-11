@@ -24,13 +24,22 @@ class Details extends Component {
         this.props.history.push(`/`);
     }
 
+    // Dispatch action to get details
+    editDetails = (id) => {
+        // this.props.dispatch({
+        //     type: 'FETCH_DETAILS',
+        //     payload: id
+        // })
+        this.props.history.push(`/edit/${id}`)
+    }
+
     render() {
         return (
             <div className="Details">
                 <AppBar className="Details-AppBar" position="static">
                     <Toolbar>
                         <Button onClick={this.backToList} color="inherit">Back to List</Button>
-                        <Button onClick={this.editDetails} color="inherit">Edit</Button>
+                        <Button onClick={() => this.editDetails(this.props.selectedMovieDetailsReducer.id)} color="inherit">Edit</Button>
                     </Toolbar>
                 </AppBar>
                 <h1 className="Details-MovieTitle">{this.props.selectedMovieDetailsReducer.title}</h1>
