@@ -18,11 +18,11 @@ class MovieList extends Component {
                     container direction="row"
                     justify="flex-start"
                     alignItems="flex-start">
-                    {this.props.movieReducer.map(movie => (
+                    {this.props.moviesReducer.map(movie => (
                         <MovieItem key={movie.id} movie={movie} />
                     ))}
                 </Grid>
-                
+
                 <pre>{JSON.stringify(this.props.movieReducer, null, 2)}</pre>
             </div>
         );
