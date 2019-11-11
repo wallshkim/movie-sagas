@@ -11,7 +11,6 @@ import { withRouter } from 'react-router-dom';
 
 
 class MovieItem extends Component {
-
     // Dispatch action to selectedMovieSaga & selectedMovieGenresSaga to get specific movie details
     // Then route to /details/:id page
     infoClick = (id) => {
@@ -24,11 +23,10 @@ class MovieItem extends Component {
     }
 
     render() {
-
+        // Define "movie" as param passed from MovieList
         let movie = this.props.movie;
 
         return (
-
             <Grid key={movie.id} className="MovieItem-Card">
                 <Card id={movie.id} key={movie.id} >
                     <CardContent >

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class Details extends Component {
-    // Renders the entire app on the DOM
 
     render() {
         return (
@@ -14,4 +14,8 @@ class Details extends Component {
     }
 }
 
-export default Details;
+const mapReduxStateToProps = (reduxState) => {
+    return reduxState
+}
+
+export default withRouter(connect(mapReduxStateToProps)(Details));
