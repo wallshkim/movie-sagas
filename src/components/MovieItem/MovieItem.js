@@ -9,7 +9,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-
 class MovieItem extends Component {
     // Dispatch action to selectedMovieSaga & selectedMovieGenresSaga to get specific movie details
     // Then route to /details/:id page
