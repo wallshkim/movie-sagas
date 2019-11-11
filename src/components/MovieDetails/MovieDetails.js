@@ -26,10 +26,10 @@ class Details extends Component {
 
     // Dispatch action to get details
     editDetails = (id) => {
-        // this.props.dispatch({
-        //     type: 'FETCH_DETAILS',
-        //     payload: id
-        // })
+        this.props.dispatch({
+            type: 'FETCH_DETAILS',
+            payload: id
+        })
         this.props.history.push(`/edit/${id}`)
     }
 
@@ -63,10 +63,11 @@ class Details extends Component {
                         ))}
                     </List>
                 </div>
-
-                <Paper className="Details-Description">
-                    <Typography variant="h5" component="h3">{this.props.selectedMovieDetailsReducer.description}</Typography>
-                </Paper>
+                <div className="Details-DescriptionContainer">
+                    <Paper className="Details-Description">
+                        <Typography variant="h5" component="h3">{this.props.selectedMovieDetailsReducer.description}</Typography>
+                    </Paper>
+                </div>
                 {/* <pre>{JSON.stringify(this.props, null, 2)}</pre> */}
             </div>
         );
