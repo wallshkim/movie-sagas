@@ -67,6 +67,7 @@ function* editMovieSaga(action) {
     try {
         yield axios.put(`/movie/edit/${action.payload.id}`, action.payload);
         yield put({ type: 'GET_MOVIES' });
+        yield put({ type: 'FETCH_DETAILS', payload: action.payload.id});
     } catch (error) {
         console.log('Error in editMovieSaga: ', error);
     }

@@ -48,13 +48,13 @@ class Edit extends Component {
 
     // Dispatch action UPDATE MOVIE to run editMovieSaga that updates server
     // Routes back to home
-    saveEdit = () => {
+    saveEdit = (id) => {
         console.log('UPDATE_MOVIE saveEdit dispatch payload: ', this.state.editedMovie);
         this.props.dispatch({ 
             type: 'UPDATE_MOVIE', 
             payload: this.state.editedMovie 
         });
-        this.props.history.push(`/`)
+        this.props.history.push(`/details/${id}`);
     }
 
     render() {
@@ -64,7 +64,7 @@ class Edit extends Component {
                 <AppBar className="Edit-AppBar" position="static">
                     <Toolbar>
                         <Button onClick={() => this.cancelEdit(this.props.selectedMovieDetailsReducer.id)} color="inherit">Cancel</Button>
-                        <Button onClick={this.saveEdit} color="inherit">Save</Button>
+                        <Button onClick={() => this.saveEdit(this.props.selectedMovieDetailsReducer.id)} color="inherit">Save</Button>
                     </Toolbar>
                 </AppBar>
                 <div className="Edit-ImgGenreContainer">
