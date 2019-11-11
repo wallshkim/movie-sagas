@@ -24,7 +24,7 @@ class Details extends Component {
         this.props.history.push(`/`);
     }
 
-    // Dispatch action to get details
+    // Dispatch action to get details from server
     editDetails = (id) => {
         this.props.dispatch({
             type: 'FETCH_DETAILS',

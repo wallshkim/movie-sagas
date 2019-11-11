@@ -18,6 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_DETAILS', selectedMovieSaga);
     yield takeEvery('FETCH_DETAILS', selectedMovieGenresSaga);
     yield takeEvery('RESET_MOVIES_DETAILS', resetSelectedMovieSaga);
+    yield takeEvery('UPDATE_MOVIE', editMovieSaga);
 }
 
 // Get all movies from server then store in movieReducer
@@ -59,6 +60,15 @@ function* resetSelectedMovieSaga() {
         yield put({ type: "SET_GENRES", payload: [] });
     } catch (error) {
         console.log('Error in resetSelectedMovieSaga', error);
+    }
+}
+
+function* editMovieSaga(action) {
+    try {
+        yield axios.put(`/movie/edit/${action.payload.id}`, action.payload);
+        yield put({ type: 'GET_MOVIES' });
+    } catch (error) {
+        console.log('Error in editMovieSaga: ', error);
     }
 }
 

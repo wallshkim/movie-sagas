@@ -11,32 +11,29 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MovieIcon from '@material-ui/icons/Movie';
 
+
 class Edit extends Component {
 
+    // Sets local movie state to handle input changes
     state = {
         editedMovie: {
+            id: '',
             title: '',
+            poster: '',
             description: ''
         }
     }
 
+    // Updates local state with input changes
     handleChange = (event, property) => {
         console.log('event happened')
         this.setState({
             editedMovie: {
-                ...this.state.editedMovie,
+                ...this.props.selectedMovieDetailsReducer,
                 [property]: event.target.value,
             }
         });
     }
-
-    // componentDidMount() {
-    //     // Gets movies and holds them in moviesReducer
-    //     this.props.dispatch({ 
-    //         type: 'FETCH_DETAILS', 
-    //         payload: this.props.selectedMovieDetailsReducer.id  
-    //     });
-    // }
 
     // Dispatch action to selectedMovieSaga & selectedMovieGenresSaga to get specific movie details
     // Route to '/details/id'
@@ -49,26 +46,16 @@ class Edit extends Component {
         this.props.history.push(`/details/${id}`);
     }
 
+    // Dispatch action UPDATE MOVIE to run editMovieSaga that updates server
+    // Routes back to home
     saveEdit = () => {
-        this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state.editedMovie })
-        this.setState({
-            editedMovie: {
-                title: '',
-                description: ''
-            }
+        console.log('UPDATE_MOVIE saveEdit dispatch payload: ', this.state.editedMovie);
+        this.props.dispatch({ 
+            type: 'UPDATE_MOVIE', 
+            payload: this.state.editedMovie 
         });
+        this.props.history.push(`/`)
     }
-
-    // addNewPlant = event => {
-    //     // event.preventDefault();
-    //     this.props.dispatch({ type: 'ADD_PLANT', payload: this.state.newPlant })
-    //     this.setState({
-    //         editedMovie: {
-    //             title: '',
-    //             description: ''
-    //         }
-    //     });
-    // }
 
     render() {
         return (
@@ -77,7 +64,7 @@ class Edit extends Component {
                 <AppBar className="Edit-AppBar" position="static">
                     <Toolbar>
                         <Button onClick={() => this.cancelEdit(this.props.selectedMovieDetailsReducer.id)} color="inherit">Cancel</Button>
-                        <Button onClick={() => this.saveEdit(this.props.selectedMovieDetailsReducer.id)} color="inherit">Save</Button>
+                        <Button onClick={this.saveEdit} color="inherit">Save</Button>
                     </Toolbar>
                 </AppBar>
                 <div className="Edit-ImgGenreContainer">
@@ -119,15 +106,13 @@ class Edit extends Component {
                         type="description"
                         margin="normal"
                         variant="outlined"
-                        multiline="true"
+                        multiline={true}
                         onChange={(event) => this.handleChange(event, 'description')}
                     />
                     </div>
                 </div>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre>
-
-                <pre>{JSON.stringify(this.props.selectedMovieDetailsReducer, null, 2)}</pre>
-
+                {/* <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                <pre>{JSON.stringify(this.props.selectedMovieDetailsReducer, null, 2)}</pre> */}
             </div>
         );
     }

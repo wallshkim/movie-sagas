@@ -3,14 +3,15 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// Gets all rows from movies table in database
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "movies"`
+    const queryText = `SELECT * FROM "movies" ORDER BY "movies"."id"`
     pool.query(queryText)
         .then(results => res.send(results.rows))
         .catch(error => console.log('Error on SELECT movies: ', error));
 });
 
-
+// Gets info of selected movie from database
 router.get('/details/:id', (req, res) => {
     const queryText = 'SELECT * FROM "movies" WHERE "id"=$1';
     pool.query(queryText, [req.params.id])
@@ -21,12 +22,14 @@ router.get('/details/:id', (req, res) => {
         });
 });
 
+// Updates selected movie in database
 router.put('/edit/:id', (req, res) => {
+    // console.log('req.body in /edit/id is: ', req.body);
     const updatedMovie = req.body;
 
     const queryText = `UPDATE "movies"
-    SET "title" = $1, "description" = $2, 
-    WHERE id=$3`;
+    SET "title" = $1, "description" = $2 
+    WHERE "id"=$3;`;
 
     const queryValues = [
         updatedMovie.title,

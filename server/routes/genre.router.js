@@ -12,6 +12,7 @@ const router = express.Router();
 //         });
 // });
 
+// Gets genre of selected movie from database
 router.get('/details/:id', (req, res) => {
     const queryText = `SELECT ARRAY_AGG("genres"."name") as "genres_array" 
     FROM "movies"
